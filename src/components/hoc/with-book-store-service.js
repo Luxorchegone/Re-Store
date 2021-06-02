@@ -1,10 +1,7 @@
 import React from 'react';
-import {
-    BookStoreServiceProvider,
-    BookStoreServiceConsumer
-} from '../book-store-service-context/';
+import {BookStoreServiceConsumer} from '../book-store-service-context/';
 
-const withBookStoreService = (Wrapped) => {
+const withBookStoreService = () => (Wrapped) => {
     // eslint-disable-next-line react/display-name
     return (props) => {
         return (
@@ -21,5 +18,4 @@ const withBookStoreService = (Wrapped) => {
         );
     }
 }
-
 export default withBookStoreService;
