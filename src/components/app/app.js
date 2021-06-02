@@ -1,13 +1,18 @@
 import React from 'react';
-import Spinner from '../spinner';
-import ErrorIndicator from '../error-indicator';
+import {Route, Switch} from 'react-router-dom';
+import './app.css';
+import {
+    CartPage,
+    HomePage
+} from '../pages';
 
 const App = () => {
+    
     return (
-        <>
-            <Spinner />
-            <ErrorIndicator />
-        </>
+        <Switch>
+            <Route path="/" component={HomePage} exact/>
+            <Route path="/cartpage" component={CartPage} />
+        </Switch>
     );
 }
 export default App;
