@@ -2,16 +2,16 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import './header.css';
 
-const Header = ({numItems, total}) => {
+const Header = ({numItems, total}) => { //Шапка приложения
     return (
         <header className="page-header">
-            <a className="page-header__logo text-dark" href="#">
+            <Link className="page-header__logo text-dark" to="/">
                 Re-Store
-            </a>
-            <a className="shopping-cart text-dark" href="#">
+            </Link>
+            <Link className="shopping-cart text-dark" to="/cart">
                 <i className="shopping-cart__icon fa fa-shopping-cart"/>
                 {numItems} items (${total})
-            </a>
+            </Link>
 
         </header>
       
