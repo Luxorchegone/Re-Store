@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import ErrorIndicator from '../error-indicator';
 
-export default class ErrorBoundary extends Component {
+export default class ErrorBoundary extends Component { //Оболочка для отлавливания ошибок
     state = {
         error: false
     }
 
-    componentDidCatch() {
+    componentDidCatch() { 
         this.setState({
             error: true
         })
