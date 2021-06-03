@@ -1,0 +1,9 @@
+.shopping-cart__total-price {
+    text-align: right;
+    font-size: 1.4rem;
+    margin-right: 10px;
+}
+
+.shopping-cart__button {
+    margin-left: 5px;   
+}
