@@ -1,18 +1,22 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
-import './app.css';
+import Header from '../header';
 import {
     CartPage,
     HomePage
 } from '../pages';
+import './app.css';
 
 const App = () => {
     
     return (
-        <Switch>
-            <Route path="/" component={HomePage} exact/>
-            <Route path="/cartpage" component={CartPage} />
-        </Switch>
+        <main className="container">
+            <Header numItems={5} total={100}/>
+            <Switch>
+                <Route path="/" component={HomePage} exact/>
+                <Route path="/cart" component={CartPage} />
+            </Switch>
+        </main>
     );
 }
 export default App;
