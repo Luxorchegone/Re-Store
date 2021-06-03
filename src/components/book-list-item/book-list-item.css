@@ -1,0 +1,40 @@
+.book-list-item {
+    display: flex;
+    margin: 0;
+    margin-bottom: 30px;
+
+}
+
+.book-list-item__image-wrapper{
+    flex-shrink: 0;
+    width: 140px;
+    height: auto;
+    margin-right: 20px;
+}
+.book-list-item__image-wrapper img{
+    max-width: 100%;
+}
+
+.book-list-item__details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: flex-start;
+}
+
+.book-list-item__title {
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+}
+
+.book-list-item__price {
+    font-size: 1.8rem;
+    line-height: 1.9rem;
+}
+
+.add-to-cart {
+    width: 106px;
+    padding: 3px;
+    margin-bottom: 4px;
+}
