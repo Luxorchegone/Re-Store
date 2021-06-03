@@ -1,6 +1,6 @@
 import React from 'react';
 
-const {
+const { //Переименовываем провайдер и консъюмер для дальнейшего удобства
     Provider: BookStoreServiceProvider,
     Consumer: BookStoreServiceConsumer
 } = React.createContext();
