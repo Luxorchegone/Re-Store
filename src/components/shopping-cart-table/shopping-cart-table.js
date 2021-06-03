@@ -1,17 +1,19 @@
 import React from 'react';
 import './shopping-cart-table.css'
 
-const ShoppingCartTable = () => {
+const ShoppingCartTable = () => { //Таблица с заказом
     return (
         <div className="shopping-cart">
             <h2>Your order</h2>
             <table className="shopping-cart__table table">
                 <thead>
-                    <th>#</th>
-                    <th>Item</th>
-                    <th>Count</th>
-                    <th>Price</th>
-                    <th>Action</th>
+                    <tr>
+                        <th>#</th>
+                        <th>Item</th>
+                        <th>Count</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
                 </thead>
                 <tbody>
                     <tr>
