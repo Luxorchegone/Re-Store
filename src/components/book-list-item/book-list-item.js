@@ -1,7 +1,7 @@
 import React from 'react';
-import './book-list-item.css'
+import './book-list-item.css';
 
-const BookListItem = ({book}) => {
+const BookListItem = ({book}) => {//Элемент списка книг
     const {title, author, price, coverImage} = book;
     return (
         <div className="book-list-item">
@@ -9,9 +9,9 @@ const BookListItem = ({book}) => {
                 <img alt="book cover" src={coverImage} />
             </div>
             <div className="book-list-item__details">
-                <a href="#" className="book-list-item__title">
+                <span href="#" className="book-list-item__title">
                     {title}
-                </a>
+                </span>
                 <span className="book-list-item__author">
                     {author}
                 </span>
