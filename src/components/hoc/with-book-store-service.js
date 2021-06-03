@@ -1,7 +1,7 @@
 import React from 'react';
 import {BookStoreServiceConsumer} from '../book-store-service-context/';
 
-const withBookStoreService = () => (Wrapped) => {
+const withBookStoreService = () => (Wrapped) => { //Оболочка джля передачи сервисов в компонент
     // eslint-disable-next-line react/display-name
     return (props) => {
         return (
