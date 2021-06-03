@@ -3,13 +3,14 @@ import BookListItem from '../book-list-item/';
 import {connect} from 'react-redux';
 import {withBookStoreService} from '../hoc';
 import './book-list.css';
-import {booksLoaded} from '../../actions';
+import {booksLoaded, booksRequested} from '../../actions';
 import compose from '../../utils';
 import Spinner from '../spinner';
 
 class BookList extends Component { //Список книг
     componentDidMount() {
-        const {bookStoreService, booksLoaded} = this.props;
+        const {bookStoreService, booksLoaded, booksRequested} = this.props;
+        booksRequested();
         bookStoreService.getBooks() //получаем данные с "сервера"
             .then((data) => booksLoaded(data)); //Диспатчим данные в стору
     }
@@ -43,7 +44,8 @@ const mapStateToProps = ({books, loading}) => { //Достаем книги из
 }
 
 const mapDispatchToProps = { //Достаем экшен для дальнейшей передачи в редюсер
-    booksLoaded
+    booksLoaded,
+    booksRequested
 }
 
 export default compose(  
