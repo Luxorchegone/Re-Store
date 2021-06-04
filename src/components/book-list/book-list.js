@@ -2,24 +2,26 @@ import React, {Component} from 'react';
 import BookListItem from '../book-list-item/';
 import {connect} from 'react-redux';
 import {withBookStoreService} from '../hoc';
-import './book-list.css';
-import {booksLoaded, booksRequested} from '../../actions';
+import {fetchBooks} from '../../actions';
 import compose from '../../utils';
 import Spinner from '../spinner';
+import ErrorIndicator from '../error-indicator';
+import './book-list.css';
 
 class BookList extends Component { //Список книг
     componentDidMount() {
-        const {bookStoreService, booksLoaded, booksRequested} = this.props;
-        booksRequested();
-        bookStoreService.getBooks() //получаем данные с "сервера"
-            .then((data) => booksLoaded(data)); //Диспатчим данные в стору
+      this.props.fetchBooks();
     }
     
     render () {
-        const {books,loading} = this.props
+        const {books, loading, error} = this.props
 
         if (loading) {
-            return <Spinner/>
+            return <Spinner />
+        }
+ 
+        if (error) {
+            return <ErrorIndicator />
         }
 
         return (
@@ -27,7 +29,7 @@ class BookList extends Component { //Список книг
                 {
                     books.map((book) => { //Формируем спиок книг
                         return (
-                            <li key={book.id}><BookListItem book={book}/></li>
+                            <li key={book.id}><BookListItem book={book} /></li>
                         )    
                     })
                 }
@@ -36,16 +38,15 @@ class BookList extends Component { //Список книг
     }
 }
 
-const mapStateToProps = ({books, loading}) => { //Достаем книги из сторы
-    return {
-        books: books,
-        loading: loading
-    }
+const mapStateToProps = ({books, loading, error}) => { //Достаем данные из сторы
+    return {books, loading, error}
 }
 
-const mapDispatchToProps = { //Достаем экшен для дальнейшей передачи в редюсер
-    booksLoaded,
-    booksRequested
+const mapDispatchToProps = (dispatch, ownProps) => { //Достаем экшены для дальнейшей передачи в редюсер
+    const {bookStoreService} = ownProps;
+    return {
+        fetchBooks: fetchBooks(dispatch, bookStoreService)  
+    }
 }
 
 export default compose(  
