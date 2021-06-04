@@ -24,9 +24,13 @@ export default class BookStoreService {
         }
     ];
     getBooks() { //Метод получения данных с "сервера"
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             setTimeout(() => { //Добавляем таймаут, для имитации сервера
-                resolve(this.data);
+                if (Math.random() > 0.75) { //Еще больше имитации сервера!)))
+                    reject(new Error('Something bad happened'));
+                } else {
+                    resolve(this.data);
+                }
             }, 800);
         });
     }
