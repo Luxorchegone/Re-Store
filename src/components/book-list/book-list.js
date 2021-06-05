@@ -8,7 +8,7 @@ import Spinner from '../spinner';
 import ErrorIndicator from '../error-indicator';
 import './book-list.css';
 
-class BookList extends Component { //Список книг
+class BookListContainer extends Component { //Список книг
     componentDidMount() {
       this.props.fetchBooks();
     }
@@ -25,17 +25,23 @@ class BookList extends Component { //Список книг
         }
 
         return (
-            <ul className="book-list">
-                {
-                    books.map((book) => { //Формируем спиок книг
-                        return (
-                            <li key={book.id}><BookListItem book={book} /></li>
-                        )    
-                    })
-                }
-            </ul>
+            <BookList books={books} />
         );
     }
+}
+
+const BookList = ({books}) => {
+    return (
+        <ul className="book-list">
+            {
+                books.map((book) => { //Формируем спиок книг
+                    return (
+                        <li key={book.id}><BookListItem book={book} /></li>
+                    )    
+                })
+            }
+        </ul>
+    );
 }
 
 const mapStateToProps = ({books, loading, error}) => { //Достаем данные из сторы
@@ -52,4 +58,4 @@ const mapDispatchToProps = (dispatch, ownProps) => { //Достаем экшен
 export default compose(  
     withBookStoreService(), //передаем сервисы в компоненты
     connect(mapStateToProps, mapDispatchToProps) //передаем аргументы в коннектор
-)(BookList);
+)(BookListContainer);
