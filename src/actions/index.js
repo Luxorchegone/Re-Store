@@ -4,7 +4,7 @@ const booksRequested = () => { //ставим флаг начала загруз
     }
 }
 
-const booksLoaded = (newBooks) => { //Записываем новую книгу
+const booksLoaded = (newBooks) => { //Записываем полученные книги
     return {
         type: 'FETCH_BOOKS_SUCCESS',
         payload: newBooks
@@ -18,6 +18,27 @@ const booksError = (error) => { //Пишем ошибку
     }
 }
 
+const bookAddedToCart = (bookId) => { //Увеличиваем количество выбранной книги в заказе на 1
+    return {
+        type: 'BOOK_ADDED_TO_CART',
+        payload: bookId
+    }
+}
+
+const bookRemovedFromCart = (bookId) => { //Уменьшаем количество выбранной книги в заказе на 1
+    return {
+        type: 'BOOK_REMOVED_FROM_CART',
+        payload: bookId
+    }
+}
+
+const allBooksRemovedFromCart = (bookId) => { //Удаляем всю позицию данной книгу из заказа
+    return {
+        type: 'ALL_BOOKS_REMOVED_FROM_CART',
+        payload: bookId
+    }
+}
+
 const fetchBooks = (dispatch, bookStoreService) => () => { 
     dispatch(booksRequested()); //Ставим флаг зарузки
     bookStoreService.getBooks() //получаем данные с "сервера"
@@ -26,5 +47,8 @@ const fetchBooks = (dispatch, bookStoreService) => () => {
 }
 
 export {
-    fetchBooks
+    fetchBooks,
+    bookAddedToCart,
+    bookRemovedFromCart,
+    allBooksRemovedFromCart 
 }
