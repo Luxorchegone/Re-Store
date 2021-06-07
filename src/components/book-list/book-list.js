@@ -46,7 +46,7 @@ const BookList = ({books, onAddedToCart}) => { //Наш компонент-ре�
     );
 }
 
-const mapStateToProps = ({books, loading, error}) => { //Достаем данные из сторы
+const mapStateToProps = ({bookList: {books, loading, error}}) => { //Достаем данные из сторы
     return {books, loading, error}
 }
 
