@@ -11,7 +11,7 @@ const App = () => {
     
     return (
         <main className="container">
-            <Header numItems={5} total={100}/>
+            <Header/>
             <Switch>
                 <Route path="/" component={HomePage} exact/>
                 <Route path="/cart" component={CartPage} />
