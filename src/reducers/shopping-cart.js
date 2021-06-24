@@ -1,5 +1,5 @@
 const updateCartItems = (cartItems, item, idx) => { //Формируем cartItems с новой позицией заказа
-    if (item.count == 0) {
+    if (item.count == 0) { //
         return [
             ...cartItems.slice(0, idx),
             ...cartItems.slice(idx + 1)
@@ -38,19 +38,26 @@ const updateCartItem = (book, item = {}, quantity) => { //Формируем п�
 const updateOrder = (state, bookId, quantity) => {
     const {bookList: {books}, shoppingCart: {cartItems}} = state;
     const book = books.find(({id}) => id == bookId);
-    const itemIndex = cartItems.findIndex(({id}) => id == bookId);
-    const item = cartItems[itemIndex];
+    const itemIndex = cartItems.findIndex(({id}) => id == bookId); //
+    const item = cartItems[itemIndex]; //книга с которой производим действие
     
-    const newItem = updateCartItem(book, item, quantity);
+    const newItem = updateCartItem(book, item, quantity); //формируем новую позицию заказа
+    const newCartItems = updateCartItems(cartItems, newItem, itemIndex);
+    let newTotalOrder = newCartItems.reduce((acc, item) => acc + item.total, 0); // считаем общую сумму заказа
+    newTotalOrder = newTotalOrder.toFixed(2);
+    const itemCount = newCartItems.reduce((acc, item) => acc + item.count, 0); //считаем общее количество книг в заказе
+
     return {
-        orderTotal: 0,
-        cartItems: updateCartItems(cartItems, newItem, itemIndex)
+        itemCount: itemCount,
+        orderTotal: newTotalOrder,
+        cartItems: newCartItems
     }
 }
 
 const updateShoppingCart = (state, action) => {
     if (state == undefined) { //initialState
         return { //"Корзина" 
+            itemCount: 0,
             cartItems: [],
             orderTotal: 0,
         }   
